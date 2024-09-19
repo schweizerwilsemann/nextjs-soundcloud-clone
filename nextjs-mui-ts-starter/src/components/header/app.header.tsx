@@ -20,6 +20,9 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -70,6 +73,7 @@ export default function Appheader() {
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+  const router = useRouter();
 
   const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -99,7 +103,14 @@ export default function Appheader() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+      <MenuItem>
+        <Link href={`/profile`} style={{
+          color: "unset",
+          textDecoration: "unset"
+        }}>
+          Profile
+        </Link>
+      </MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
     </Menu>
   );
@@ -155,6 +166,9 @@ export default function Appheader() {
       </MenuItem>
     </Menu>
   );
+  const handleRedirectHome = () =>{
+    router.push('/');
+  }
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -170,7 +184,8 @@ export default function Appheader() {
                 variant="h6"
                 noWrap
                 component="div"
-                sx={{ display: { xs: 'none', sm: 'block' } }}
+                sx={{ cursor: 'pointer', display: { xs: 'none', sm: 'block' } }}
+                onClick={() => handleRedirectHome()}
             >
                 SoundCloud Clone
             </Typography>
@@ -188,17 +203,21 @@ export default function Appheader() {
                     display: { xs: 'none', md: 'flex' }, 
                     gap: '20px',
                     alignItems: 'center',
-                    cursor: 'pointer'
+                    cursor: 'pointer',
+                    "> a": {
+                      color: "unset",
+                      textDecoration: "unset"
+                    }
                 }}>
-                <span>
+                <Link href={`/playlist`}>
                 Playlists
-                </span>
-                <span>
+                </Link>
+                <Link href={`/like`}>
                 Likes
-                </span>
-                <span>
+                </Link>
+                <Link href={`/uploads`}>
                 Upload
-                </span>
+                </Link>
                 <Avatar
                     onClick={handleProfileMenuOpen}
                 >
