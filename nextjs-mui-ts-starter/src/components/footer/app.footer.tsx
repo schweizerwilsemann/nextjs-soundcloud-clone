@@ -19,7 +19,7 @@ const Player = () => {
             <Container sx={{display: 'flex', gap: 10}}>
                 <AudioPlayer
                     autoPlay
-                    src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"
+                    src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/tracks/hoidanit.mp3`}
                     onPlay={e => console.log("onPlay")}
                     // other props here
                     style={{
