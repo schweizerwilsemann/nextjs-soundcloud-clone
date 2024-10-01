@@ -1,18 +1,24 @@
-'use client'
-import WaveTrack from '@/components/track/wavetrack';
-import { useSearchParams } from 'next/navigation'
+"use client";
+import WaveTrack from "@/components/track/wavetrack";
+import { useSearchParams } from "next/navigation";
+import { Container } from "@mui/material";
 
+import React from "react";
 
-import React from 'react'
+export default function DetailTrackPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const searchParams = useSearchParams();
 
-export default function DetailTrackPage({params}: {params: {slug: string}}) {
-    const searchParams = useSearchParams();
-
-    const search = searchParams.get('audio');
+  const search = searchParams.get("audio");
 
   return (
-    <div>DetailTrackPage
-        <div className=""><WaveTrack /></div>
-    </div>
-  )
+    <Container>
+      <div className="">
+        <WaveTrack />
+      </div>
+    </Container>
+  );
 }
